@@ -76,10 +76,12 @@ public class UsuarioResource {
 	@PostMapping("/procurarUsuario")
 	public Usuario getUsuario(@RequestBody Usuario login){
 		Usuario usuario = usuarioRepository.findBycpf(login.getCpf());
-		if(usuario.getSenha().equals(login.getSenha())) {
-			return usuario;
+		if(usuario != null ) {
+			if(usuario.getSenha().equals(login.getSenha())) {
+				return usuario;
+			}
 		}
-		return new Usuario();
+		return login;
 	}
 	
 	@ApiOperation(value="Retorna uma lista de usuários")
