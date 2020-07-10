@@ -33,6 +33,7 @@ public class UsuarioResource {
 	UsuarioRepository usuarioRepository;
 
 	
+	
 	/*
 	@ApiOperation(value="Retorna uma lista de usuários")
 	@GetMapping("/usuarios")
@@ -66,7 +67,7 @@ public class UsuarioResource {
 	@ApiOperation(value="Cria um novo usuário")
 	@PostMapping("/CriarUsuario")
 	public Usuario CriarUsuarioConta(@RequestBody Usuario usuario){
-		usuario.setSaldo(new BigDecimal(0.0));
+		usuario.setSaldo(0.0);
 		return usuarioRepository.save(usuario);
 	}
 	
@@ -90,7 +91,30 @@ public class UsuarioResource {
 		return usuarioRepository.findAll();
 	}
 	
+	@ApiOperation(value="Este método deposita um valor na conta do usuário")
+	@PostMapping("/depositar/{valor}")
+	public Usuario depositar(@RequestBody Usuario usuario, 
+							 @PathVariable(value = "valor") double  valor){
+		
+		Usuario u = usuarioRepository.findBycpf(usuario.getCpf());
+		u.setSaldo(u.getSaldo() + valor);
+		u.setMovimentacao(u.getMovimentacao()+"Deposito;"+valor+";");
+		return usuarioRepository.save(u);
+	}
 	
+	@ApiOperation(value="Este método deposita um valor na conta do usuário")
+	@PostMapping("/sacar/{valor}")
+	public Usuario sacar(@RequestBody Usuario usuario, 
+							 @PathVariable(value = "valor") double  valor){
+		Usuario u = usuarioRepository.findBycpf(usuario.getCpf());
+		if(u.getSaldo() < valor) {
+			u.setMovimentacao(u.getMovimentacao()+"Saldo Insuficiente;"+"Conferir o Saldo"+";");
+			return usuarioRepository.save(u);
+		} 
+		u.setSaldo(u.getSaldo() - valor);
+		u.setMovimentacao(u.getMovimentacao()+"Saque;"+valor+";");
+		return usuarioRepository.save(u);
+	}
 	
 	
 	

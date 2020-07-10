@@ -2,6 +2,7 @@ package Capgemini.CaixaAPIRest.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,8 +31,20 @@ public class Usuario implements Serializable{
 	private String uNome;
 	private String email;
 	private String senha;
-	private BigDecimal saldo;
+	private double saldo;
+	private String movimentacao = "";
 	
+	
+	
+
+	public String getMovimentacao() {
+		return movimentacao;
+	}
+
+	public void setMovimentacao(String movimentacao) {
+		this.movimentacao = movimentacao;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -65,10 +78,10 @@ public class Usuario implements Serializable{
 	}
 	
 
-	public BigDecimal getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
-	public void setSaldo(BigDecimal saldo) {
+	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 	
