@@ -14,6 +14,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 //http://localhost:8080/swagger-ui.html
+//heroku logs --tail
 import java.util.ArrayList;
 
 @Configuration

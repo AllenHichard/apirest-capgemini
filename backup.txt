@@ -1,0 +1,3 @@
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U username -d nome-banco-local caminho-arquivo-heroku
+
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d apicontabackup C:\Users\allen\Downloads\4fe5b16f-ed15-4f8a-a6a3-d7c38edcd6c9
