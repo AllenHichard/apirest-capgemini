@@ -82,6 +82,12 @@ public class UsuarioResource {
 		return new Usuario();
 	}
 	
+	@ApiOperation(value="Retorna uma lista de usuários")
+	@GetMapping("/usuarios")
+	public List<Usuario> ListaUsuarios(){
+		return usuarioRepository.findAll();
+	}
+	
 	
 	
 	
