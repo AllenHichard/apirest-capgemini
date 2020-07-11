@@ -116,6 +116,17 @@ public class UsuarioResource {
 		return usuarioRepository.save(u);
 	}
 	
+	@ApiOperation(value="Mensagem básica para sinalizar o funcionamento da API")
+	@GetMapping("/")
+	public String getTest1(){
+		return "API CAPGEMINI FUNCIONANDO";
+	}
+	@ApiOperation(value="Mensagem básica para sinalizar o funcionamento da API")
+	@GetMapping("")
+	public String getTest2(){
+		return "API CAPGEMINI FUNCIONANDO";
+	}
+	
 	
 	
 	
